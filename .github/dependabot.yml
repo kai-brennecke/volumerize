@@ -4,9 +4,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "wednesday"
+      day: "monday"
       time: "01:00"
-      timezone: "America/Toronto"
+      timezone: "Europe/Berlin"
     groups:
       python:
         update-types:
@@ -17,17 +17,17 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "wednesday"
+      day: "monday"
       time: "01:00"
-      timezone: "America/Toronto"
+      timezone: "Europe/Berlin"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "wednesday"
+      day: "monday"
       time: "01:00"
-      timezone: "America/Toronto"
+      timezone: "Europe/Berlin"
     groups:
       github-actions:
         update-types:

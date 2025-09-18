@@ -19,7 +19,7 @@ $ docker run \
      -d -p 80:8080 \
      --name jenkins \
      -v jenkins_volume:/jenkins \
-     pumbaasdad/jenkins
+     kai-brennecke/jenkins
 ~~~~
 
 > Starts Jenkins and stores its data inside the Docker volume `jenkins_volume`.
@@ -41,7 +41,7 @@ $ docker run -d \
     -e "VOLUMERIZE_SOURCE=/source" \
     -e "VOLUMERIZE_TARGET=gdrive://service-account@project-projectid.iam.gserviceaccount.com?myDriveFolderID=folderId" \
     -e "GOOGLE_SERVICE_JSON_FILE=/credentials/google_service_account.json" \
-    pumbaasdad/volumerize
+    kai-brennecke/volumerize
 ~~~~
 
 > `volumerize_cache` is the local data cache.
@@ -65,7 +65,7 @@ $ docker run --rm \
     -e "VOLUMERIZE_SOURCE=/source" \
     -e "VOLUMERIZE_TARGET=gdrive://service-account@project-projectid.iam.gserviceaccount.com?myDriveFolderID=folderId" \
     -e "GOOGLE_SERVICE_JSON_FILE=/credentials/google_service_account.json" \
-    pumbaasdad/volumerize restore
+    kai-brennecke/volumerize restore
 ~~~~
 
 > Will perform a test restore inside a separate volume `jenkins_test_restore`
@@ -75,7 +75,7 @@ Check the contents of the volume:
 ~~~~
 $ docker run --rm \
     -v jenkins_test_restore:/source \
-    pumbaasdad/alpine ls -R /source
+    kai-brennecke/alpine ls -R /source
 ~~~~
 
 > Lists files inside the source volume
@@ -89,7 +89,7 @@ $ docker run --rm \
     -e "VOLUMERIZE_SOURCE=/source" \
     -e "VOLUMERIZE_TARGET=gdrive://service-account@project-projectid.iam.gserviceaccount.com?myDriveFolderID=folderId" \
     -e "GOOGLE_SERVICE_JSON_FILE=/credentials/google_service_account.json" \
-    pumbaasdad/volumerize verify
+    kai-brennecke/volumerize verify
 ~~~~
 
 > Will perform a single verification of the volume contents against the Google Drive archive.
@@ -105,7 +105,7 @@ $ docker run \
      -d -p 80:8080 \
      --name jenkins \
      -v jenkins_volume:/jenkins \
-     pumbaasdad/jenkins
+     kai-brennecke/jenkins
 ~~~~
 
 > Starts Jenkins and stores its data inside the Docker volume `jenkins_volume`.
@@ -123,7 +123,7 @@ $ docker run -d \
     -e "GOOGLE_SERVICE_JSON_FILE=/credentials/google_service_account.json" \
     -e "VOLUMERIZE_CONTAINERS=jenkins" \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    pumbaasdad/volumerize
+    kai-brennecke/volumerize
 ~~~~
 
 > Needs access to the docker host over the directive `-v /var/run/docker.sock:/var/run/docker.sock`

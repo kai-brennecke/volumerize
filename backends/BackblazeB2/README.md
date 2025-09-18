@@ -21,7 +21,7 @@ $ docker run \
      -d -p 80:8080 \
      --name jenkins \
      -v jenkins_volume:/jenkins \
-     pumbaasdad/jenkins
+     kai-brennecke/jenkins
 ~~~~
 
 > Starts Jenkins and stores its data inside the Docker volume `jenkins_volume`.
@@ -39,7 +39,7 @@ $ docker run -d \
     -v jenkins_volume:/source:ro \
     -e "VOLUMERIZE_SOURCE=/source" \
     -e "VOLUMERIZE_TARGET=b2://003945h951emn6p0000000001:H006yG2V7+pogtolEFwCexcZUWJdkNc@volumerizetest/" \
-    pumbaasdad/volumerize
+    kai-brennecke/volumerize
 ~~~~
 
 > Will backup to application id 003945h951emn6p0000000001 using application key H006yG2V7+pogtolEFwCexcZUWJdkNc inside bucket volumerizetest.
@@ -62,7 +62,7 @@ $ docker run --rm \
     -v volumerize_cache:/volumerize-cache \
     -e "VOLUMERIZE_SOURCE=/source" \
     -e "VOLUMERIZE_TARGET=b2://003945h951emn6p0000000001:H006yG2V7+pogtolEFwCexcZUWJdkNc@volumerizetest/" \
-    pumbaasdad/volumerize restore
+    kai-brennecke/volumerize restore
 ~~~~
 
 > Will perform a test restore inside a separate volume `jenkins_test_restore`
@@ -72,7 +72,7 @@ Check the contents of the volume:
 ~~~~
 $ docker run --rm \
     -v jenkins_test_restore:/source \
-    pumbaasdad/alpine ls -R /source
+    kai-brennecke/alpine ls -R /source
 ~~~~
 
 > Lists files inside the source volume
@@ -85,7 +85,7 @@ $ docker run --rm \
     -v volumerize_cache:/volumerize-cache \
     -e "VOLUMERIZE_SOURCE=/source" \
     -e "VOLUMERIZE_TARGET=b2://003945h951emn6p0000000001:H006yG2V7+pogtolEFwCexcZUWJdkNc@volumerizetest/" \
-    pumbaasdad/volumerize verify
+    kai-brennecke/volumerize verify
 ~~~~
 
 > Will perform a single verification of the volume contents against the Backblaze B2 archive.
@@ -101,7 +101,7 @@ $ docker run \
      -d -p 80:8080 \
      --name jenkins \
      -v jenkins_volume:/jenkins \
-     pumbaasdad/jenkins
+     kai-brennecke/jenkins
 ~~~~
 
 > Starts Jenkins and stores its data inside the Docker volume `jenkins_volume`.
@@ -117,7 +117,7 @@ $ docker run -d \
     -e "VOLUMERIZE_TARGET=b2://003945h951emn6p0000000001:H006yG2V7+pogtolEFwCexcZUWJdkNc@volumerizetest/" \
     -e "VOLUMERIZE_CONTAINERS=jenkins" \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    pumbaasdad/volumerize
+    kai-brennecke/volumerize
 ~~~~
 
 > Needs access to the docker host over the directive `-v /var/run/docker.sock:/var/run/docker.sock`

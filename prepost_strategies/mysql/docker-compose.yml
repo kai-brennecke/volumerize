@@ -10,7 +10,7 @@ services:
       - mariadb:/var/lib/mysql
 
   volumerize:
-    image: pumbaasdad/volumerize:mysql
+    image: kai-brennecke/volumerize:mysql
     environment:
       - VOLUMERIZE_SOURCE1=/source
       - VOLUMERIZE_TARGET1=file:///backup

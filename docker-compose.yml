@@ -1,6 +1,6 @@
 services:
   volumerize:
-    image: pumbaasdad/volumerize:latest
+    image: kai-brennecke/volumerize:latest
     volumes:
       - source_volume1:/source/1
       - source_volume2:/source/2

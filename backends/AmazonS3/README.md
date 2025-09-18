@@ -47,7 +47,7 @@ $ docker run \
      -d -p 80:8080 \
      --name jenkins \
      -v jenkins_volume:/jenkins \
-     pumbaasdad/jenkins
+     kai-brennecke/jenkins
 ~~~~
 
 > Starts Jenkins and stores its data inside the Docker volume `jenkins_volume`.
@@ -67,7 +67,7 @@ $ docker run -d \
     -e "VOLUMERIZE_TARGET=s3://s3.eu-central-1.amazonaws.com/duplicitytest" \
     -e "AWS_ACCESS_KEY_ID=QQWDQIWIDO1QO" \
     -e "AWS_SECRET_ACCESS_KEY=ewlfkwkejflkjwlkej3fjw381" \
-    pumbaasdad/volumerize
+    kai-brennecke/volumerize
 ~~~~
 
 > `volumerize_cache` is the local data cache.
@@ -91,7 +91,7 @@ $ docker run --rm \
     -e "VOLUMERIZE_TARGET=s3://s3.eu-central-1.amazonaws.com/duplicitytest" \
     -e "AWS_ACCESS_KEY_ID=QQWDQIWIDO1QO" \
     -e "AWS_SECRET_ACCESS_KEY=ewlfkwkejflkjwlkej3fjw381" \
-    pumbaasdad/volumerize restore
+    kai-brennecke/volumerize restore
 ~~~~
 
 > Will perform a test restore inside a separate volume `jenkins_test_restore`
@@ -101,7 +101,7 @@ Check the contents of the volume:
 ~~~~
 $ docker run --rm \
     -v jenkins_test_restore:/source \
-    pumbaasdad/alpine ls -R /source
+    kai-brennecke/alpine ls -R /source
 ~~~~
 
 > Lists files inside the source volume
@@ -115,7 +115,7 @@ $ docker run --rm \
     -e "VOLUMERIZE_TARGET=s3://s3.eu-central-1.amazonaws.com/duplicitytest" \
     -e "AWS_ACCESS_KEY_ID=QQWDQIWIDO1QO" \
     -e "AWS_SECRET_ACCESS_KEY=ewlfkwkejflkjwlkej3fjw381" \
-    pumbaasdad/volumerize verify
+    kai-brennecke/volumerize verify
 ~~~~
 
 > Will perform a single verification of the volume contents against the Amazon S3 archive.
@@ -131,7 +131,7 @@ $ docker run \
      -d -p 80:8080 \
      --name jenkins \
      -v jenkins_volume:/jenkins \
-     pumbaasdad/jenkins
+     kai-brennecke/jenkins
 ~~~~
 
 > Starts Jenkins and stores its data inside the Docker volume `jenkins_volume`.
@@ -149,7 +149,7 @@ $ docker run -d \
     -e "AWS_SECRET_ACCESS_KEY=ewlfkwkejflkjwlkej3fjw381" \
     -e "VOLUMERIZE_CONTAINERS=jenkins" \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    pumbaasdad/volumerize
+    kai-brennecke/volumerize
 ~~~~
 
 > Needs access to the docker host over the directive `-v /var/run/docker.sock:/var/run/docker.sock`

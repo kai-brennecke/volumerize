@@ -29,9 +29,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-      # This is used to complete the identity challenge
-      # with sigstore/fulcio when running outside of PRs.
-      id-token: write
     outputs:
       image: ${{ steps.docker-config.outputs.primaryTag }}
     steps:
@@ -59,14 +56,6 @@ jobs:
       - name: Checkout repository
         if: ${{ github.event_name != 'pull_request_target' }}
         uses: actions/checkout@v4.2.2
-
-      # Install the cosign tool except on PR
-      # https://github.com/sigstore/cosign-installer
-      - name: Install cosign
-        if: ${{ github.event_name != 'pull_request_target' }}
-        uses: sigstore/cosign-installer@v3.8.2
-        with:
-          cosign-release: 'v2.2.2'
 
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
@@ -119,18 +108,3 @@ jobs:
           tags: ${{ steps.docker-config.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           provenance: ${{ github.event_name != 'pull_request_target' }}
-
-      # Sign the resulting Docker image digest.
-      # This will only write to the public Rekor transparency log when the Docker
-      # repository is public to avoid leaking data.  If you would like to publish
-      # transparency data even for private images, pass --force to cosign below.
-      # https://github.com/sigstore/cosign
-      - name: Sign the published Docker image
-        if: ${{ github.event_name != 'pull_request_target' }}
-        env:
-          # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
-          TAGS: ${{ steps.meta.outputs.tags }}
-          DIGEST: ${{ steps.build-and-push.outputs.digest }}
-        # This step uses the identity token to provision an ephemeral certificate
-        # against the sigstore community Fulcio instance.
-        run: echo -n "${TAGS}" | xargs --verbose -d "," -I {} cosign sign --yes {}@${DIGEST}
