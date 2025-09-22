@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "01:00"
+      time: "11:00"
       timezone: "Europe/Berlin"
     groups:
       python:
@@ -18,7 +18,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "01:00"
+      time: "11:00"
       timezone: "Europe/Berlin"
 
   - package-ecosystem: "github-actions"
@@ -26,7 +26,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "01:00"
+      time: "11:00"
       timezone: "Europe/Berlin"
     groups:
       github-actions:
