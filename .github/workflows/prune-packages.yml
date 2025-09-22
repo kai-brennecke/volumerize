@@ -19,9 +19,7 @@ jobs:
       - name: Prune tags
         uses: vlaurin/action-ghcr-prune@v0.6.0
         with:
-          token: ${{ secrets.CLEANING_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           container: volumerize
-          keep-tags-regexes: |
-            .sig$
           prune-tags-regexes: |
             ^pr-${{ github.event.number || inputs.pr-number }}
