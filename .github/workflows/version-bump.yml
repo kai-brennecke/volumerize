@@ -27,13 +27,13 @@ jobs:
         fetch-depth: '0'
     - name: Bump version and push tag
       id: bump
-      uses: anothrNick/github-tag-action@1.73.0
+      uses: anothrNick/github-tag-action@1.75.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: false
         DEFAULT_BUMP: patch
         INITIAL_VERSION: 1.0.0
     - name: Create release
-      uses: ncipollo/release-action@v1.16.0
+      uses: ncipollo/release-action@v1.20.0
       with:
         tag:  ${{ steps.bump.outputs.new_tag }}
