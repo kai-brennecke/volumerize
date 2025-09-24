@@ -49,26 +49,6 @@ files = [
 ]
 
 [[package]]
-name = "attrs"
-version = "25.1.0"
-description = "Classes Without Boilerplate"
-optional = false
-python-versions = ">=3.8"
-groups = ["main"]
-files = [
-    {file = "attrs-25.1.0-py3-none-any.whl", hash = "sha256:c75a69e28a550a7e93789579c22aa26b0f5b83b75dc4e08fe092980051e1090a"},
-    {file = "attrs-25.1.0.tar.gz", hash = "sha256:1c97078a80c814273a76b2a298a932eb681c87415c11dee0a6921de7f1b02c3e"},
-]
-
-[package.extras]
-benchmark = ["cloudpickle ; platform_python_implementation == \"CPython\"", "hypothesis", "mypy (>=1.11.1) ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pympler", "pytest (>=4.3.0)", "pytest-codspeed", "pytest-mypy-plugins ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pytest-xdist[psutil]"]
-cov = ["cloudpickle ; platform_python_implementation == \"CPython\"", "coverage[toml] (>=5.3)", "hypothesis", "mypy (>=1.11.1) ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pytest-xdist[psutil]"]
-dev = ["cloudpickle ; platform_python_implementation == \"CPython\"", "hypothesis", "mypy (>=1.11.1) ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pre-commit-uv", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pytest-xdist[psutil]"]
-docs = ["cogapp", "furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier (<24.7)"]
-tests = ["cloudpickle ; platform_python_implementation == \"CPython\"", "hypothesis", "mypy (>=1.11.1) ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pytest-xdist[psutil]"]
-tests-mypy = ["mypy (>=1.11.1) ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\"", "pytest-mypy-plugins ; platform_python_implementation == \"CPython\" and python_version >= \"3.10\""]
-
-[[package]]
 name = "azure-core"
 version = "1.32.0"
 description = "Microsoft Azure Core Library for Python"
@@ -237,32 +217,26 @@ crt = ["awscrt (==0.27.6)"]
 
 [[package]]
 name = "boxsdk"
-version = "3.14.0"
+version = "10.0.0"
 description = "Official Box Python SDK"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "boxsdk-3.14.0-py2.py3-none-any.whl", hash = "sha256:0314e2f172b050e98489955f2e9001263de79c3dd751e6feee19f2195fdf7c01"},
-    {file = "boxsdk-3.14.0.tar.gz", hash = "sha256:7918b1929368724662474fffa417fa0457a523d089b8185260efbedd28c4f9b1"},
+    {file = "boxsdk-10.0.0-py3-none-any.whl", hash = "sha256:533c38eae1015cac7e42822c5206777f301e6b02ab2f9a9e73604b09e2742581"},
+    {file = "boxsdk-10.0.0.tar.gz", hash = "sha256:5236dd7559226f846eb3acadfe324dc27fbc48a0ad796749d920271d5df8ef8c"},
 ]
 
 [package.dependencies]
-attrs = ">=17.3.0"
 cryptography = {version = ">=3", optional = true, markers = "extra == \"jwt\""}
 pyjwt = {version = ">=1.7.0", optional = true, markers = "extra == \"jwt\""}
-python-dateutil = "*"
-requests = ">=2.4.3,<3"
-requests-toolbelt = ">=0.4.0"
-urllib3 = "*"
+requests = "*"
+requests-toolbelt = "*"
 
 [package.extras]
-coveralls = ["coveralls", "tox (<=3.28.0)"]
-dev = ["tox (<=3.28.0)"]
-gh = ["tox (<=3.28.0)", "tox-gh-actions"]
+dev = ["tox"]
 jwt = ["cryptography (>=3)", "pyjwt (>=1.7.0)"]
-redis = ["redis (>=2.10.3)"]
-test = ["bottle", "jsonpatch (>1.14)", "pytest (<8.0.0)", "pytest-cov (<5.0.0)", "pytest-lazy-fixture (<1.0.0)", "pytest-timeout (<3.0.0)", "pytz", "sqlalchemy (<1.4.0)", "urllib3 (<2)"]
+test = ["cryptography (>=3)", "pyjwt (>=1.7.0)", "pytest", "pytest-cov", "pytest-rerunfailures", "pytest-timeout"]
 
 [[package]]
 name = "cachetools"
@@ -2558,4 +2532,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "7b8abea0c6e93a2dcfb0e918013ba8987cd198aba92a55cc476d19610b4659e9"
+content-hash = "ec983c6d72f68a0a7d5dbbee1a63bf60baabf6d64d8b8209e1ef91c00b362c80"
