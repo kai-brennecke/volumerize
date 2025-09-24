@@ -4,8 +4,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "tuesday"
-      time: "03:00"
+      day: "wednesday"
+      time: "11:30"
       timezone: "Europe/Berlin"
     groups:
       python:
@@ -17,16 +17,16 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "tuesday"
-      time: "03:00"
+      day: "wednesday"
+      time: "11:30"
       timezone: "Europe/Berlin"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "tuesday"
-      time: "03:00"
+      day: "wednesday"
+      time: "11:30"
       timezone: "Europe/Berlin"
     groups:
       github-actions:
