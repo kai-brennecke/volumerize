@@ -3,7 +3,7 @@ FROM docker:28.1.1 AS docker
 
 FROM alpine:3.21.3 AS alpine
 
-FROM python:3.13.2 AS python
+FROM python:3.13.7 AS python
 RUN python -V > .python_version
 
 FROM ghcr.io/kai-brennecke/poetry:2025-09-22 AS poetry
