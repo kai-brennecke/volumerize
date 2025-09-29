@@ -13,10 +13,12 @@ updates:
           - "patch"
 
   - package-ecosystem: "docker"
-    directory: "/"
+    directories:
+      - "/"
+      - "/.github/actions/generate-docker-config"
     schedule:
       interval: "daily"
-      time: "01:00"
+      time: "09:30"
       timezone: "Europe/Berlin"
 
   - package-ecosystem: "github-actions"
