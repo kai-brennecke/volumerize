@@ -13,6 +13,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           container: volumerize
-          dry-run: true # Dry-run first, then change to `false`
+          dry-run: false # Dry-run first, then change to `false`
           keep-younger-than: 7 # days
           prune-untagged: true
