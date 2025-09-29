@@ -1,0 +1,18 @@
+name: Prune Docker Images
+on:
+  schedule:
+     - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prune tags
+        uses: vlaurin/action-ghcr-prune@v0.6.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          container: volumerize
+          dry-run: true # Dry-run first, then change to `false`
+          keep-younger-than: 7 # days
+          prune-untagged: true
