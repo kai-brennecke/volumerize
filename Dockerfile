@@ -43,6 +43,8 @@ RUN apk upgrade --update && \
       libffi-dev \
       librsync \
       librsync-dev \
+      libxml2-dev \
+      libxslt-dev \
       libcurl && \
     CFLAGS=-Wno-int-conversion pip3 install --no-cache-dir pyrax && \
     mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize /var/jobber/0 && \
