@@ -34,8 +34,6 @@ ENV VOLUMERIZE_HOME=/etc/volumerize \
     VOLUMERIZE_CACHE=/volumerize-cache \
     VOLUMERIZE_SCRIPT_DIR=/opt/volumerize \
     PATH=$PATH:/etc/volumerize \
-    GOOGLE_DRIVE_SETTINGS=/credentials/cred.file \
-    GOOGLE_DRIVE_CREDENTIAL_FILE=/credentials/googledrive.cred \
     GPG_TTY=/dev/console
 
 USER root
