@@ -6,10 +6,10 @@ FROM alpine:3.22.1 AS alpine
 FROM python:3.13.7 AS python
 RUN python -V > .python_version
 
-FROM ghcr.io/kai-brennecke/poetry:2025-09-22 AS poetry
+FROM ghcr.io/kai-brennecke/poetry:2025-10-09 AS poetry
 RUN poetry -V > .poetry_version
 
-FROM ghcr.io/kai-brennecke/poetry:2025-09-22
+FROM ghcr.io/kai-brennecke/poetry:2025-10-09
 
 LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.com>"
 # test branch
