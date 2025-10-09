@@ -1,27 +1,14 @@
-FROM rclone/rclone:1.71.1 AS rclone
-FROM docker:28.5.1 AS docker
-
-FROM alpine:3.22.1 AS alpine
-
-FROM python:3.13.7 AS python
-RUN python -V > .python_version
-
-FROM ghcr.io/kai-brennecke/poetry:2025-09-22 AS poetry
-RUN poetry -V > .poetry_version
-
-FROM ghcr.io/kai-brennecke/poetry:2025-09-22
+FROM alpine:3.22.1
 
 LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.com>"
-# test branch
 
 ARG JOBBER_VERSION=1.4.4
 
-COPY --from=alpine /etc/os-release /.expected_os_release
-COPY --from=python /.python_version /.expected_python_version
-COPY --from=poetry /.poetry_version /.expected_poetry_version
-
-RUN apk upgrade --update && \
-    apk add \
+RUN apk add --no-cache \
+      duplicity \
+      apprise \
+      docker-cli \
+      rclone \
       bash \
       tini \
       su-exec \
@@ -32,19 +19,8 @@ RUN apk upgrade --update && \
       curl \
       openssh \
       openssl \
-      gcc \
-      glib \
       gnupg \
-      alpine-sdk \
-      linux-headers \
-      musl-dev \
-      rsync \
-      lftp \
-      libffi-dev \
-      librsync \
-      librsync-dev \
-      libcurl && \
-    CFLAGS=-Wno-int-conversion pip3 install --no-cache-dir pyrax && \
+      rsync && \
     mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize /var/jobber/0 && \
     # Install Jobber
     wget --directory-prefix=/tmp https://github.com/dshearer/jobber/releases/download/v${JOBBER_VERSION}/jobber-${JOBBER_VERSION}-r0.apk && \
@@ -52,21 +28,7 @@ RUN apk upgrade --update && \
     # Cleanup
     apk del \
       curl \
-      wget && \
-    rm -rf /var/cache/apk/* && rm -rf /tmp/*
-
-COPY poetry.lock pyproject.toml /
-
-RUN poetry install --no-ansi && \
-    apk del \
-      alpine-sdk \
-      gcc \
-      librsync-dev \
-      linux-headers \
-      musl-dev
-
-COPY --from=rclone /usr/local/bin/rclone /usr/local/bin/rclone
-COPY --from=docker /usr/local/bin/ /usr/local/bin/
+      wget
 
 ENV VOLUMERIZE_HOME=/etc/volumerize \
     VOLUMERIZE_CACHE=/volumerize-cache \
