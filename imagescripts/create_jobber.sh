@@ -21,7 +21,7 @@ elif [[ -n "$JOBBER_CUSTOM" ]]; then
 
   returnCode=0
   # Copy the file at location CUSTOM_JOBBER to the root jobs
-  cp $JOBBER_CUSTOM $configfile || returnCode=$? && true
+  cp $JOBBER_CUSTOM $configfile || returnCode=$?
 
   if [ ${returnCode} -gt 0 ]; then
     echo "failed to copy $CUSTOM_JOBBER to $configfile. Make sure this is not a problem!"
