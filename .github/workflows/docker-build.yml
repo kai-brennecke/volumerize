@@ -49,13 +49,13 @@ jobs:
 
       - name: Checkout repository
         if: ${{ github.event_name == 'pull_request_target' }}
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v5.0.1
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Checkout repository
         if: ${{ github.event_name != 'pull_request_target' }}
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v5.0.1
 
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
@@ -76,7 +76,7 @@ jobs:
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
         id: meta
-        uses: docker/metadata-action@v5.8.0
+        uses: docker/metadata-action@v5.9.0
         env:
           VERSION: ",value=${{ inputs.version }}"
           LATEST: ${{ inputs.version != '' && 'true' || 'auto' }}
