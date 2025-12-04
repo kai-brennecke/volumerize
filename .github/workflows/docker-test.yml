@@ -22,14 +22,14 @@ jobs:
     steps:
       - name: Checkout repository
         if: ${{ github.event_name == 'pull_request_target' }}
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6.0.1
         with:
           submodules: true
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Checkout repository
         if: ${{ github.event_name != 'pull_request_target' }}
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6.0.1
         with:
           submodules: true
 
