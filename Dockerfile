@@ -1,4 +1,4 @@
-FROM alpine:3.22.2
+FROM alpine:3.23.2
 
 LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.com>"
 
