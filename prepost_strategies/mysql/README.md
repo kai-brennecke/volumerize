@@ -8,14 +8,15 @@ With this prepost strategy you can create a .sql backup of your MySQL containers
 
 Aside of the required environment variables by Volumerize, this prepost strategy will require a couple of extra variables.
 
-| Name                        | Description                                                                        |
-| --------------------------- | ---------------------------------------------------------------------------------- |
-| `VOLUMERIZE_MYSQL_USERNAME` | Username of the user who will perform the restore or dump.                         |
-| `VOLUMERIZE_MYSQL_PASSWORD` | Password of the user who will perform the restore or dump.                         |
-| `VOLUMERIZE_MYSQL_HOST`     | IP or domain of the host machine.                                                  |
-| `VOLUMERIZE_MYSQL_DATABASE` | Database to backup/restore.                                                        |
-| `VOLUMERIZE_MYSQL_SOURCE`   | Variable name of source where dumps are to be stored (default `VOLUMERIZE_SOURCE`) |
-| `VOLUMERIZE_MYSQL_OPTIMIZE` | Optimize database before dumping (default `false`)                                 |
+| Name                          | Description                                                                        |
+| ----------------------------- | ---------------------------------------------------------------------------------- |
+| `VOLUMERIZE_MYSQL_USERNAME`   | Username of the user who will perform the restore or dump.                         |
+| `VOLUMERIZE_MYSQL_PASSWORD`   | Password of the user who will perform the restore or dump.                         |
+| `VOLUMERIZE_MYSQL_HOST`       | IP or domain of the host machine.                                                  |
+| `VOLUMERIZE_MYSQL_DATABASE`   | Database to backup/restore.                                                        |
+| `VOLUMERIZE_MYSQL_SOURCE`     | Variable name of source where dumps are to be stored (default `VOLUMERIZE_SOURCE`) |
+| `VOLUMERIZE_MYSQL_OPTIMIZE`   | Optimize database before dumping (default `false`)                                 |
+| `VOLUMERIZE_MYSQL_EXTRA_ARGS` | Extra arguments to be passed.                                                      |
 
 ## Example with Docker Compose
 
