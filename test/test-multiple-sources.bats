@@ -126,9 +126,18 @@ setup() {
     assert_success
   fi
 
+  # restoring to non empty directory fails with exit code 11
+  run docker compose exec -T volumerize restore 1
+  assert_failure 11
+
+  run docker compose exec -T volumerize rm /source/1/test.txt
   run docker compose exec -T volumerize restore 1
   assert_success
 
+  run docker compose exec -T volumerize restore 2
+  assert_failure 11
+
+  run docker compose exec -T volumerize rm /source/2/test.txt
   run docker compose exec -T volumerize restore 2
   assert_success
 
