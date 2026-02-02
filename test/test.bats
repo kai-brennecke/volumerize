@@ -105,6 +105,11 @@ setup() {
     assert_success
   fi
 
+  # restoring to non empty directory fails with exit code 11
+  run docker compose exec -T volumerize restore
+  assert_failure 11
+  run docker compose exec -T volumerize bash -c 'rm -r /source/*'
+  assert_success
   run docker compose exec -T volumerize restore
   assert_success
 
