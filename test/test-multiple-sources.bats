@@ -130,7 +130,7 @@ setup() {
   run docker compose exec -T volumerize restore 1
   assert_failure 11
 
-  run docker compose exec -T volumerize 'rm -r /source/1/*'
+  run docker compose exec -T volumerize bash -c 'rm -r /source/1/*'
   assert_success
   run docker compose exec -T volumerize restore 1
   assert_success
@@ -138,7 +138,7 @@ setup() {
   run docker compose exec -T volumerize restore 2
   assert_failure 11
 
-  run docker compose exec -T volumerize 'rm -r /source/2/*'
+  run docker compose exec -T volumerize bash -c 'rm -r /source/2/*'
   assert_success
   run docker compose exec -T volumerize restore 2
   assert_success
