@@ -27,13 +27,11 @@ RUN apt-get update \
         docker-cli \
         bash \
         tini \
-        su-exec \
         gzip \
         gettext \
         tar \
         wget \
         curl \
-        openssh \
         gnupg \
         lftp \
     && rm -rf /var/lib/apt/lists/* \
