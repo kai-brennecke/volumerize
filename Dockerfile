@@ -1,35 +1,51 @@
-FROM alpine:3.23.3
+FROM python:3.14.6
 
 LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.com>"
 
 ARG JOBBER_VERSION=1.4.4
 
-RUN apk add --no-cache \
-      duplicity \
-      apprise \
-      docker-cli \
-      rclone \
-      bash \
-      tini \
-      su-exec \
-      gzip \
-      gettext \
-      tar \
-      wget \
-      curl \
-      openssh \
-      openssl \
-      gnupg \
-      rsync \
-      lftp && \
-    mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize /var/jobber/0 && \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        intltool \
+        lftp \
+        librsync-dev \
+        libffi-dev \
+        libssl-dev \
+        openssl \
+        par2 \
+        python3-dev \
+        python3-lxml \
+        python3-pip \
+        python3-venv \
+        python3 \
+        rclone \
+        rsync \
+        rdiff \
+        tzdata \
+        apprise \
+        docker-cli \
+        bash \
+        tini \
+        su-exec \
+        gzip \
+        gettext \
+        tar \
+        wget \
+        curl \
+        openssh \
+        gnupg \
+        lftp \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize /var/jobber/0 \
     # Install Jobber
-    wget --directory-prefix=/tmp https://github.com/dshearer/jobber/releases/download/v${JOBBER_VERSION}/jobber-${JOBBER_VERSION}-r0.apk && \
-    apk add --allow-untrusted --no-scripts /tmp/jobber-${JOBBER_VERSION}-r0.apk && \
-    # Cleanup
-    apk del \
-      curl \
-      wget
+    && wget --directory-prefix=/tmp https://github.com/dshearer/jobber/releases/download/v${JOBBER_VERSION}/jobber-${JOBBER_VERSION}-1_amd64.deb \
+    && apt-get install -y /tmp/jobber-${JOBBER_VERSION}-1_amd64.deb \
+    && rm -rf /var/lib/apt/lists/* /tmp/jobber-${JOBBER_VERSION}-1_amd64.deb \
+    && python3 -m pip install --upgrade pip pipx \
+    && pipx --global ensurepath \
+    && pipx --global install duplicity[==3.1.0]
+
 
 ENV VOLUMERIZE_HOME=/etc/volumerize \
     VOLUMERIZE_CACHE=/volumerize-cache \
