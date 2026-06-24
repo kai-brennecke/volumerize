@@ -37,7 +37,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize /var/jobber/0 \
     # Install Jobber
-    && wget --directory-prefix=/tmp https://github.com/dshearer/jobber/releases/download/v${JOBBER_VERSION}/jobber-${JOBBER_VERSION}-1_amd64.deb \
+    && wget --directory-prefix=/tmp https://github.com/dshearer/jobber/releases/download/v${JOBBER_VERSION}/jobber_${JOBBER_VERSION}-1_amd64.deb \
     && apt-get install -y /tmp/jobber-${JOBBER_VERSION}-1_amd64.deb \
     && rm -rf /var/lib/apt/lists/* /tmp/jobber-${JOBBER_VERSION}-1_amd64.deb \
     && python3 -m pip install --upgrade pip pipx \
