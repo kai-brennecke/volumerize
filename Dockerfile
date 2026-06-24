@@ -20,7 +20,8 @@ RUN apk add --no-cache \
       openssh \
       openssl \
       gnupg \
-      rsync && \
+      rsync \
+      lftp && \
     mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize /var/jobber/0 && \
     # Install Jobber
     wget --directory-prefix=/tmp https://github.com/dshearer/jobber/releases/download/v${JOBBER_VERSION}/jobber-${JOBBER_VERSION}-r0.apk && \
