@@ -31,7 +31,7 @@ else
 
   source $CUR_DIR/base.sh
 
-  JOBBER_SCHEDULE=${VOLUMERIZE_JOBBER_TIME:-'0 0 4 * * *'}
+  JOBBER_SCHEDULE=${VOLUMERIZE_JOBBER_TIME:-'0 0 4 * * * *'}
   stdout_sink=$'\n'"      - *stdoutSink"
 
   job_count=${JOB_COUNT:-1}
