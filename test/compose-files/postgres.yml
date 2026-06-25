@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:17.2
+    image: postgres:18.4
     environment:
       - POSTGRES_USERNAME=postgres
       - POSTGRES_PASSWORD=1234
