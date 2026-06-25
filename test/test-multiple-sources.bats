@@ -79,7 +79,7 @@ setup() {
 
 @test "supercronic" {
 
-  run docker compose exec -T volumerize supercronic -test
+  run docker compose exec -T volumerize supercronic -test /root/volumerize-crontab
   assert_success
 
 }
