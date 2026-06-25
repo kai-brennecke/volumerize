@@ -28,6 +28,7 @@ RUN apt-get update \
         rdiff \
         tzdata \
     && rm -rf /var/lib/apt/lists/* \
+    && pipx ensurepath \
     && pipx install duplicity \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
 
