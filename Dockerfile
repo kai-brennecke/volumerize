@@ -4,22 +4,11 @@ LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.co
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        lftp \
-        openssl \
-        par2 \
-        rclone \
-        rsync \
-        rdiff \
+        duplicity \
         tzdata \
         docker-cli \
         bash \
-        gzip \
-        gettext \
-        tar \
-        wget \
         curl \
-        gnupg \
-        duplicity \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
 
