@@ -2,8 +2,9 @@ ARG BASE_IMAGE=
 
 FROM ${BASE_IMAGE}
 
-RUN apk add --no-cache \
-    postgresql-client
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends postgresql-client \
+ && rm -rf /var/lib/apt/lists/*
 
 COPY postexecute /postexecute
 COPY preexecute /preexecute
