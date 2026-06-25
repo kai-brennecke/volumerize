@@ -30,7 +30,7 @@ services:
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DATABASE=postgres
     volumes:
-      - postgresdb:/var/lib/postgresql/data
+      - postgresdb:/var/lib/postgresql
 
   volumerize:
     build: .
