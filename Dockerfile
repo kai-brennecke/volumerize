@@ -2,6 +2,10 @@ FROM debian:bookworm-20260623
 
 LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.com>"
 
+ENV PIPX_HOME=/opt/pipx
+ENV PIPX_BIN_DIR=/usr/local/bin
+ENV PATH="/usr/local/bin:${PATH}"
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         pipx \
@@ -28,7 +32,6 @@ RUN apt-get update \
         rdiff \
         tzdata \
     && rm -rf /var/lib/apt/lists/* \
-    && pipx ensurepath \
     && pipx install duplicity \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
 
