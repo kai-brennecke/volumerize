@@ -32,11 +32,9 @@ RUN apt-get update \
         curl \
         gnupg \
         lftp \
-        pipx \
+        duplicity \
     && rm -rf /var/lib/apt/lists/* \
-    && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize \
-    && pipx --global ensurepath \
-    && pipx --global install duplicity[==3.1.0]
+    && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
 
 
 ENV VOLUMERIZE_HOME=/etc/volumerize \
