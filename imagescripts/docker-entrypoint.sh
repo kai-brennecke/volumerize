@@ -35,7 +35,6 @@ fi
 # not sure if there is a better way to check for that?
 if [ -n "${!VOLUMERIZE_SOURCE*}" ]; then
   source $CUR_DIR/create_crontab.sh
-  source $CUR_DIR/create_gdocs_file.sh
 fi
 
 if [ "$1" = 'volumerize' ]; then

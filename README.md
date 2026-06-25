@@ -670,7 +670,6 @@ The following variables are supported to be stored in files, the location specif
 
 - `VOLUMERIZE_GPG_PRIVATE_KEY`
 - `PASSPHRASE`
-- `GOOGLE_DRIVE_SECRET`
 - `VOLUMERIZE_TARGET`
 - `VOLUMERIZE_REPLICATE_TARGET`
 - `FTP_PASSWORD`
@@ -714,8 +713,7 @@ WORKDIR /home/<your_user>
 | `VOLUMERIZE_DELAYED_START`        | Start Volumerize delayed by given time (`sleep` command)                                                                 | `0`           |
 | `VOLUMERIZE_CRON_CUSTOM`                   | Specify a custom jobber file file location. You need to bind mount a file to this location or use docker configs/secrets |               |
 | `VOLUMERIZE_CRON_DISABLED`                  | Disable Jobber for the root user (It will still run but without jobs)                                                    | `false`       |
-| `GOOGLE_DRIVE_ID`                 | ID for google drive                                                                                                      |               |
-| `GOOGLE_DRIVE_SECRET`             | secret for google drive                                                                                                  |               |
+
 
 ## Build the Image
 
