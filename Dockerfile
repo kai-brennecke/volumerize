@@ -6,7 +6,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         duplicity \
         tzdata \
-        docker-cli \
         bash \
         curl \
     && rm -rf /var/lib/apt/lists/* \
