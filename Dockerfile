@@ -2,8 +2,6 @@ FROM python:3.14.6
 
 LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.com>"
 
-ARG JOBBER_VERSION=1.4.4
-
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
@@ -35,11 +33,7 @@ RUN apt-get update \
         gnupg \
         lftp \
     && rm -rf /var/lib/apt/lists/* \
-    && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize /var/jobber/0 \
-    # Install Jobber
-    && wget --directory-prefix=/tmp https://github.com/dshearer/jobber/releases/download/v${JOBBER_VERSION}/jobber_${JOBBER_VERSION}-1_amd64.deb \
-    && apt-get install -y /tmp/jobber-${JOBBER_VERSION}-1_amd64.deb \
-    && rm -rf /var/lib/apt/lists/* /tmp/jobber-${JOBBER_VERSION}-1_amd64.deb \
+    && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize \
     && python3 -m pip install --upgrade pip pipx \
     && pipx --global ensurepath \
     && pipx --global install duplicity[==3.1.0]
