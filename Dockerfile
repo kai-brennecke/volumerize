@@ -31,6 +31,7 @@ RUN apt-get update \
         rsync \
         rdiff \
         tzdata \
+        pv \
     && rm -rf /var/lib/apt/lists/* \
     && pipx install duplicity \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
