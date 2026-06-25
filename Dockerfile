@@ -11,7 +11,7 @@ RUN apt-get update \
         ca-certificates \
         gnupg \
     && rm -rf /var/lib/apt/lists/* \
-    && pipx --global install duplicity \
+    && pipx install duplicity \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
 
 # Latest releases available at https://github.com/aptible/supercronic/releases
