@@ -32,9 +32,9 @@ RUN apt-get update \
         curl \
         gnupg \
         lftp \
+        pipx \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize \
-    && python3 -m pip install --upgrade pip pipx \
     && pipx --global ensurepath \
     && pipx --global install duplicity[==3.1.0]
 
