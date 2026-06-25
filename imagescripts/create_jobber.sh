@@ -2,36 +2,35 @@
 
 set -o errexit
 
-readonly JOBBER_SCRIPT_DIR=$VOLUMERIZE_HOME
-readonly configfile="$(echo ~)/.jobber"
+readonly configfile="$(echo ~)/volumerize-crontab"
 
 
-if [[ "$JOBBER_DISABLE" == true ]]; then
+if [[ "$VOLUMERIZE_CRON_DISABLED" == true ]]; then
   if [ ! -f "${configfile}" ]; then
-    # create empty jobber config
+    # create empty crontab
     cat > "${configfile}" <<EOF
-# This is an empty jobber config file. Jobber has been disabled.
+# This is an empty crontab file. Crontab has been disabled.
 EOF
   else
-    echo "Jobber was configured to be disabled, but cannot be disabled because there already is a config file at '$(echo ~)/.jobber'. Please delete/unmount to disable jobber"
+    echo "Crontab was configured to be disabled, but cannot be disabled because there already is a config file at '$(echo ~)/volumerize-crontab'. Please delete/unmount to disable crontab"
   fi
 
-elif [[ -n "$JOBBER_CUSTOM" ]]; then
+elif [[ -n "$VOLUMERIZE_CRON_CUSTOM" ]]; then
 
   returnCode=0
-  # Copy the file at location CUSTOM_JOBBER to the root jobs
-  cp $JOBBER_CUSTOM $configfile || returnCode=$?
+  # Copy the file at location CUSTOM_CRONTAB to the root jobs
+  cp $VOLUMERIZE_CRON_CUSTOM $configfile || returnCode=$?
 
   if [ ${returnCode} -gt 0 ]; then
-    echo "failed to copy $CUSTOM_JOBBER to $configfile. Make sure this is not a problem!"
+    echo "failed to copy $VOLUMERIZE_CRON_CUSTOM to $configfile. Make sure this is not a problem!"
   fi
 
 else
-  # Create a jobber file dynamically
+  # Create a crontab file dynamically
 
   source $CUR_DIR/base.sh
 
-  JOBBER_SCHEDULE=${VOLUMERIZE_JOBBER_TIME:-'0 0 4 * * * *'}
+  CRONTAB_SCHEDULE=${VOLUMERIZE_CRON_TIME:-'0 0 4 * * * *'}
   stdout_sink=$'\n'"      - *stdoutSink"
 
   job_count=${JOB_COUNT:-1}
@@ -48,8 +47,8 @@ else
     job_time="VOLUMERIZE_JOBBER_TIME${job_id}"
 
     declare "JOB_NAME${counter}"="VolumerizeBackupJob${job_id}"
-    declare "JOB_COMMAND${counter}"="${JOBBER_SCRIPT_DIR}/periodicBackup ${job_id}"
-    declare "JOB_TIME${counter}"="${!job_time:-${JOBBER_SCHEDULE}}"
+    declare "JOB_COMMAND${counter}"="${VOLUMERIZE_HOME}/periodicBackup ${job_id}"
+    declare "JOB_TIME${counter}"="${!job_time:-${CRONTAB_SCHEDULE}}"
   done
 
 
