@@ -62,11 +62,3 @@ file_env() {
   export "$var"="$val"
   unset "$fileVar"
 }
-
-function pipeEnvironmentVariables() {
-  local environmentfile=$1
-  cat > ${environmentfile} <<EOF
-  #!/bin/sh
-EOF
-  sh -c export >> ${environmentfile}
-}
