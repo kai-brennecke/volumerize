@@ -11,13 +11,13 @@ setup_file() {
   docker compose --no-ansi up -d
   if [ $TEST_IMAGE_TYPE == mysql ]; then
     # Wait for database initialisation
-    wait_until_running mariadb 120 "MariaDB init process done. Ready for start up." "mariadbd: ready for connections."
+    wait_until_running mariadb 180 "MariaDB init process done. Ready for start up." "mariadbd: ready for connections."
   elif [ $TEST_IMAGE_TYPE == mongodb ]; then
     # Wait for database initialisation
-    wait_until_running mongodb 120 "MongoDB init process complete; ready for start up." "Waiting for connections"
+    wait_until_running mongodb 180 "MongoDB init process complete; ready for start up." "Waiting for connections"
   elif [ $TEST_IMAGE_TYPE == postgres ]; then
     # Wait for database initialisation
-    wait_until_running postgres 120 "PostgreSQL init process complete; ready for start up." "database system is ready to accept connections"
+    wait_until_running postgres 180 "PostgreSQL init process complete; ready for start up." "database system is ready to accept connections"
   fi
 }
 
