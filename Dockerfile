@@ -1,4 +1,4 @@
-FROM python:3.14.6
+FROM debian:trixie-20260623
 
 LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.com>"
 
@@ -37,5 +37,5 @@ VOLUME ["/volumerize-cache"]
 COPY imagescripts/ /opt/volumerize/
 COPY scripts/ /etc/volumerize/
 COPY postexecute/ /postexecute
-ENTRYPOINT ["/sbin/tini","--","/opt/volumerize/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/tini","--","/opt/volumerize/docker-entrypoint.sh"]
 CMD ["volumerize"]
