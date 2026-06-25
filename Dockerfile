@@ -8,6 +8,8 @@ RUN apt-get update \
         tzdata \
         bash \
         curl \
+        ca-certificates \
+        gnupg \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
 

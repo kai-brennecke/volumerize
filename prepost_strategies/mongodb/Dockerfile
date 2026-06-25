@@ -3,7 +3,6 @@ ARG BASE_IMAGE=
 FROM ${BASE_IMAGE}
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends ca-certificates curl gnupg \
  && install -d -m 0755 /etc/apt/keyrings \
  && curl -fsSL https://pgp.mongodb.com/server-8.0.asc \
     | gpg --dearmor -o /etc/apt/keyrings/mongodb-server-8.0.gpg \
