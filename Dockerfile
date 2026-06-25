@@ -4,19 +4,9 @@ LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.co
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        build-essential \
-        intltool \
         lftp \
-        librsync-dev \
-        libffi-dev \
-        libssl-dev \
         openssl \
         par2 \
-        python3-dev \
-        python3-lxml \
-        python3-pip \
-        python3-venv \
-        python3 \
         rclone \
         rsync \
         rdiff \
@@ -31,7 +21,6 @@ RUN apt-get update \
         wget \
         curl \
         gnupg \
-        lftp \
         duplicity \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
