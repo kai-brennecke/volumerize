@@ -24,7 +24,6 @@ This fork was created in an attempt to keep dependencies up to date. This will p
     - [Provided PrePost-Strategies](#provided-prepost-strategies)
   - [Container Scripts](#container-scripts)
   - [Customize Jobber](#customize-jobber)
-    - [Notifications with Apprise](#notifications-with-apprise)
   - [Multiple Backups](#multiple-backups)
   - [Docker Secrets](#docker-secrets)
   - [Run as non-root user](#run-as-non-root-user)
@@ -612,22 +611,6 @@ jobs:
       - *stdoutSink
 ```
 
-### Notifications with Apprise
-
-It is possible to send notifications using [apprise](https://github.com/caronc/apprise/) to a [large number of recipients](https://github.com/caronc/apprise/wiki#notification-services). To use it, you need to configure the following environment variables:
-
-- set `APPRISE_NOTIFY` to any value to enable
-- for the delivery you can configure any of these (if none are configured, nothing will happen)
-  - `APPRISE_NOTIFY_URL` an apprise url from the [available ones](https://github.com/caronc/apprise/wiki#notification-services), i.e. `discord://webhook_id/webhook_token`
-  - `APPRISE_NOTIFY_CONFIG` an [apprise configuration](https://github.com/caronc/apprise/wiki/config), from a file or another url
-  - `APPRISE_TAG` a tag that can be used to filter some urls from the config. It is automatically applied to the manual url
-
-To only enable error or failure notifications set one of these instead of `APPRISE_NOTIFY` to any value:
-- `APPRISE_NOTIFY_ERR` enable only error notifications (jobber system error)
-- `APPRISE_NOTIFY_FAIL` enable only failure notifications (backup failure)
-
-All variables can also be configured for each job individually, see [multiple backups](#multiple-backups).
-
 ## Multiple Backups
 
 > WARNING: If you are configuring multiple backups, your pre/post strategies will be executed for each job! If this is not what you want, either check that the `JOB_ID` variable has the correct ID or mount multiple folders under a single root folder and backup that as a single backup.
@@ -645,12 +628,6 @@ The following environment variables can be enumerated:
 * `VOLUMERIZE_JOBBER_TIME<JOB_ID>`
 * `JOBBER_NOTIFY_ERR<JOB_ID>`
 * `JOBBER_NOTIFY_FAIL<JOB_ID>`
-* `APPRISE_NOTIFY<JOB_ID>`
-* `APPRISE_NOTIFY_ERR<JOB_ID>`
-* `APPRISE_NOTIFY_FAIL<JOB_ID>`
-* `APPRISE_NOTIFY_CONFIG<JOB_ID>`
-* `APPRISE_NOTIFY_URL<JOB_ID>`
-* `APPRISE_NOTIFY_TAG<JOB_ID>`
 
 When using multiple backup jobs you do not necessarily need to specify a cache directory for each backup. By default `<VOLUMERIZE_CACHE>/<JOB_ID>` is used. The minimum required environment variables for each job is:
 
@@ -697,8 +674,6 @@ The following variables are supported to be stored in files, the location specif
 - `VOLUMERIZE_TARGET`
 - `VOLUMERIZE_REPLICATE_TARGET`
 - `FTP_PASSWORD`
-- `APPRISE_NOTIFY_CONFIG<JOB_ID>`
-- `APPRISE_NOTIFY_URL<JOB_ID>`
 
 ## Run as non-root user
 
@@ -741,12 +716,6 @@ WORKDIR /home/<your_user>
 | `JOBBER_DISABLE`                  | Disable Jobber for the root user (It will still run but without jobs)                                                    | `false`       |
 | `GOOGLE_DRIVE_ID`                 | ID for google drive                                                                                                      |               |
 | `GOOGLE_DRIVE_SECRET`             | secret for google drive                                                                                                  |               |
-| `APPRISE_NOTIFY`                  | enable apprise notifications                                                                                             |               |
-| `APPRISE_NOTIFY_ERR`              | enable apprise notifications only for errors                                                                             |               |
-| `APPRISE_NOTIFY_FAIL`             | enable apprise notifications only for failures                                                                           |               |
-| `APPRISE_NOTIFY_URL`              | url for apprise notifications                                                                                            |               |
-| `APPRISE_NOTIFY_CONFIG`           | config url for apprise notifications                                                                                     |               |
-| `APPRISE_NOTIFY_TAG`              | tag used to filter apprise notifications                                                                                 |               |
 
 ## Build the Image
 

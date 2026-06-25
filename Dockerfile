@@ -11,7 +11,6 @@ RUN apt-get update \
         rsync \
         rdiff \
         tzdata \
-        apprise \
         docker-cli \
         bash \
         tini \
