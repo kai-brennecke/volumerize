@@ -4,13 +4,14 @@ LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.co
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        duplicity \
+        pipx \
         tzdata \
         bash \
         curl \
         ca-certificates \
         gnupg \
     && rm -rf /var/lib/apt/lists/* \
+    && pipx --global install duplicity \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
 
 # Latest releases available at https://github.com/aptible/supercronic/releases
