@@ -10,6 +10,23 @@ RUN apt-get update \
         curl \
         ca-certificates \
         gnupg \
+        build-essential \
+        intltool \
+        lftp \
+        librsync-dev \
+        libffi-dev \
+        libssl-dev \
+        openssl \
+        par2 \
+        python3-dev \
+        python3-lxml \
+        python3-pip \
+        python3-venv \
+        python3 \
+        rclone \
+        rsync \
+        rdiff \
+        tzdata \
     && rm -rf /var/lib/apt/lists/* \
     && pipx install duplicity \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
