@@ -13,7 +13,6 @@ RUN apt-get update \
         tzdata \
         docker-cli \
         bash \
-        tini \
         gzip \
         gettext \
         tar \
@@ -47,5 +46,5 @@ VOLUME ["/volumerize-cache"]
 COPY imagescripts/ /opt/volumerize/
 COPY scripts/ /etc/volumerize/
 COPY postexecute/ /postexecute
-ENTRYPOINT ["/usr/bin/tini","--","/opt/volumerize/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "/opt/volumerize/docker-entrypoint.sh"]
 CMD ["volumerize"]
