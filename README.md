@@ -695,7 +695,7 @@ WORKDIR /home/<your_user>
 | `VOLUMERIZE_SOURCE`               | Source directory of a job                                                                                                | required      |
 | `VOLUMERIZE_CACHE`                | Cache directory for the backup job                                                                                       |               |
 | `VOLUMERIZE_TARGET`               | Target url for the backup                                                                                                | required      |
-| `VOLUMERIZE_JOBBER_TIME`          | Timer for job execution                                                                                                  | `0 0 4 * * *` |
+| `VOLUMERIZE_CRON_TIME`          | Timer for job execution                                                                                                  | `0 0 4 * * *` |
 | `VOLUMERIZE_REPLICATE`            | Replicate after a finished backup                                                                                        | `false`       |
 | `VOLUMERIZE_REPLICATE_TARGET`     | Target url for a replication                                                                                             |               |
 | `VOLUMERIZE_CONTAINERS`           | Containers to stop before and start after backup (space separated)                                                       |               |
