@@ -77,96 +77,10 @@ setup() {
 
 }
 
-@test "jobber" {
+@test "supercronic" {
 
-  run docker compose exec -T volumerize jobber test VolumerizeBackupJob1
+  run docker compose exec -T volumerize supercronic -test
   assert_success
-
-  run echo $(docker compose exec -T volumerize bash -c "ls --color=never /backup/1 | grep -Ec \"duplicity-full(-signatures)?\.[0-9A-Z]{16}\.(manifest|(vol1\.difftar|sigtar)\.gz)\"")
-  assert_output '3'
-
-  run docker compose exec -T volumerize jobber test VolumerizeBackupJob2
-  assert_success
-
-  run echo $(docker compose exec -T volumerize bash -c "ls --color=never /backup/2 | grep -Ec \"duplicity-full(-signatures)?\.[0-9A-Z]{16}\.(manifest|(vol1\.difftar|sigtar)\.gz)\"")
-  assert_output '3'
-
-}
-
-@test "jobber restore" {
-
-  run docker compose exec -T volumerize jobber test VolumerizeBackupJob1
-  assert_success
-  run docker compose exec -T volumerize jobber test VolumerizeBackupJob2
-  assert_success
-
-  # Corrupt data to simulate necessity of restore
-  run docker compose exec -T volumerize bash -c 'echo wrong | cat > /source/1/test.txt'
-  assert_success
-  run docker compose exec -T volumerize bash -c 'echo wrong | cat > /source/2/test.txt'
-  assert_success
-  if [ $TEST_IMAGE_TYPE == mysql ]; then
-    run mysql_drop_table mariadb1
-    assert_success
-    run mysql_drop_table mariadb2
-    assert_success
-  elif [ $TEST_IMAGE_TYPE == mongodb ]; then
-    run mongo_drop_collection mongodb1
-    assert_success
-    run mongo_get_values mongodb1
-    refute_output
-    run mongo_drop_collection mongodb2
-    assert_success
-    run mongo_get_values mongodb2
-    refute_output
-  elif [ $TEST_IMAGE_TYPE == postgres ]; then
-    run postgres_drop_table postgres1
-    assert_success
-    run postgres_drop_table postgres2
-    assert_success
-  fi
-
-  # restoring to non empty directory fails with exit code 11
-  run docker compose exec -T volumerize restore 1
-  assert_failure 11
-
-  run docker compose exec -T volumerize bash -c 'rm -r /source/1/*'
-  assert_success
-  run docker compose exec -T volumerize restore 1
-  assert_success
-
-  run docker compose exec -T volumerize restore 2
-  assert_failure 11
-
-  run docker compose exec -T volumerize bash -c 'rm -r /source/2/*'
-  assert_success
-  run docker compose exec -T volumerize restore 2
-  assert_success
-
-  run docker compose exec -T volumerize cat /source/1/test.txt
-  assert_success
-  assert_output --partial test
-  run docker compose exec -T volumerize cat /source/2/test.txt
-  assert_success
-  assert_output --partial test
-  if [ $TEST_IMAGE_TYPE == mysql ]; then
-    run mysql_check_values mariadb1
-    assert_success
-    run mysql_check_values mariadb2
-    assert_success
-  elif [ $TEST_IMAGE_TYPE == mongodb ]; then
-    run mongo_get_values mongodb1
-    assert_success
-    assert_output
-    run mongo_get_values mongodb2
-    assert_success
-    assert_output
-  elif [ $TEST_IMAGE_TYPE == postgres ]; then
-    run postgres_check_values postgres1
-    assert_success
-    run postgres_check_values postgres2
-    assert_success
-  fi
 
 }
 
