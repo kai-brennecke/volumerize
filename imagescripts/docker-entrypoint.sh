@@ -31,6 +31,10 @@ if [ -n "${VOLUMERIZE_DELAYED_START}" ]; then
   sleep ${VOLUMERIZE_DELAYED_START}
 fi
 
+if [ -n "${VOLUMERIZE_KNOWN_HOSTS}" ]; then
+  echo "${VOLUMERIZE_KNOWN_HOSTS}" > /root/.ssh/known_hosts
+fi
+
 # Checks if any variable prefixed with VOLUMERIZE_SOURCE is set 
 # not sure if there is a better way to check for that?
 if [ -n "${!VOLUMERIZE_SOURCE*}" ]; then
