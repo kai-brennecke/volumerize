@@ -3,7 +3,7 @@ ARG BASE_IMAGE=
 FROM ${BASE_IMAGE}
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends default-mysql-client \
+ && apt-get install -y --no-install-recommends default-mysql-client pv \
  && rm -rf /var/lib/apt/lists/*
 
 COPY postexecute /postexecute
