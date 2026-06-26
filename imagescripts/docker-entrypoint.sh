@@ -34,13 +34,11 @@ fi
 # Checks if any variable prefixed with VOLUMERIZE_SOURCE is set 
 # not sure if there is a better way to check for that?
 if [ -n "${!VOLUMERIZE_SOURCE*}" ]; then
-  source $CUR_DIR/create_jobber.sh
-  source $CUR_DIR/create_gdocs_file.sh
+  source $CUR_DIR/create_crontab.sh
 fi
 
 if [ "$1" = 'volumerize' ]; then
-  pipeEnvironmentVariables "/etc/profile.d/jobber.sh"
-  exec /usr/libexec/jobberrunner -u /var/jobber/0/cmd.sock /root/.jobber
+  exec supercronic /root/volumerize-crontab
 else
   exec "$@"
 fi

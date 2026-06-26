@@ -1,12 +1,12 @@
 services:
   postgres:
-    image: postgres:17.2
+    image: postgres:18.4
     environment:
       - POSTGRES_USERNAME=postgres
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=postgres
     volumes:
-      - postgresdb:/var/lib/postgresql/data
+      - postgresdb:/var/lib/postgresql
 
   volumerize:
     image: ${TEST_IMAGE}

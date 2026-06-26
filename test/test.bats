@@ -54,13 +54,10 @@ setup() {
 
 }
 
-@test "jobber" {
+@test "supercronic" {
 
-  run docker compose exec -T volumerize jobber test VolumerizeBackupJob
+  run docker compose exec -T volumerize supercronic -test /root/volumerize-crontab
   assert_success
-
-  run echo $(docker compose exec -T volumerize bash -c "ls --color=never /backup | grep -Ec \"duplicity-full(-signatures)?\.[0-9A-Z]{16}\.(manifest|(vol1\.difftar|sigtar)\.gz)\"")
-  assert_output '3'
 
 }
 

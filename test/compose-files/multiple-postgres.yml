@@ -1,21 +1,21 @@
 services:
   postgres1:
-    image: postgres:17.2
+    image: postgres:18.4
     environment:
       - POSTGRES_USERNAME=postgres
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=postgres
     volumes:
-      - postgresdb1:/var/lib/postgresql/data
+      - postgresdb1:/var/lib/postgresql
   
   postgres2:
-    image: postgres:17.2
+    image: postgres:18.4
     environment:
       - POSTGRES_USERNAME=postgres
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=postgres
     volumes:
-      - postgresdb2:/var/lib/postgresql/data
+      - postgresdb2:/var/lib/postgresql
 
   volumerize:
     image: ${TEST_IMAGE}

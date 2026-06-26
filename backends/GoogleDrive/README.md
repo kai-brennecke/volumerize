@@ -2,8 +2,6 @@
 
 Volumerize can backup Docker volumes on Google Drive.
 
-Note: If you previously created Google Drive credentials using PyDrive and your key has not expired, those keys can still be used via the `GOOGLE_DRIVE_ID` and `GOOGLE_DRIVE_SECRET` environment variables.  However, since Google has removed the ability for out of band OAuth authentication, this is no longer the recommended approach.
-
 You have to perform the following steps:
 
 Login to [Google developers console](https://console.developers.google.com) and create a service account.
