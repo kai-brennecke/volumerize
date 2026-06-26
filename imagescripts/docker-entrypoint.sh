@@ -32,6 +32,7 @@ if [ -n "${VOLUMERIZE_DELAYED_START}" ]; then
 fi
 
 if [ -n "${VOLUMERIZE_KNOWN_HOSTS}" ]; then
+  mkdir -p /root/.ssh
   echo "${VOLUMERIZE_KNOWN_HOSTS}" > /root/.ssh/known_hosts
 fi
 
