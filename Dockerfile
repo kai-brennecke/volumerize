@@ -1,4 +1,4 @@
-FROM debian:bookworm-20260713
+FROM debian:bookworm-20260803
 
 LABEL maintainer="Kai Brennecke <229121123+kai-brennecke@users.noreply.github.com>"
 
