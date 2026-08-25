@@ -31,7 +31,7 @@ function prepareDBConfiguration() {
   
   file_env ${VARIABLE_DB_PASSWORD}
   if [ -n "${!VARIABLE_DB_SOURCE}" ]; then
-    VARIABLE_DB_SOURCE=${!VARIABLE_DB_SOURCE}
+    VARIABLE_DB_SOURCE=${VARIABLE_DB_SOURCE}
   else
     VARIABLE_DB_SOURCE="VOLUMERIZE_SOURCE"
   fi
