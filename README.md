@@ -126,6 +126,8 @@ $ docker exec volumerize backup
 
 ## Backup Multiple volumes
 
+This no longer works with newer duplicity versions, because duplicity will not write to folders with existing files / folders.
+
 The container can backup one source folder, see environment variable `VOLUMERIZE_TARGET`. If you want to backup multiple volumes you will have to hook up multiple volumes under the same source folder.
 
 Example:
