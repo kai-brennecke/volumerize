@@ -27,14 +27,15 @@ function prepareDBConfiguration() {
   local VARIABLE_DB_USERNAME="VOLUMERIZE_MONGO_USERNAME${jobNumber}"
   local VARIABLE_DB_PORT="VOLUMERIZE_MONGO_PORT${jobNumber}"
   local VARIABLE_DB_SOURCE="VOLUMERIZE_MONGO_SOURCE${jobNumber}"
-  
+  local VARIABLE_BACKUP_SOURCE="VOLUMERIZE_SOURCE${JOB_ID}"
+
   file_env ${VARIABLE_DB_PASSWORD}
-  if [ -n "${!VARIABLE_DB_SOURCE}" ]; then
+  if [ -n "${VARIABLE_DB_SOURCE}" ]; then
     VARIABLE_DB_SOURCE=${!VARIABLE_DB_SOURCE}
   else
     VARIABLE_DB_SOURCE="VOLUMERIZE_SOURCE"
   fi
-  if [ -n "${JOB_ID}" ] && [ "VOLUMERIZE_SOURCE${JOB_ID}" != "${VARIABLE_DB_SOURCE}" ]; then
+  if [ -n "${JOB_ID}" ] && [ "${!VARIABLE_BACKUP_SOURCE}" != "${!VARIABLE_DB_SOURCE}" ]; then
     echo "INFO: Database ${jobNumber} skipped because the running job does not correspond to its source destination"
     return 1
   fi
