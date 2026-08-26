@@ -28,17 +28,18 @@ function prepareDBConfiguration() {
   local VARIABLE_DB_PORT="VOLUMERIZE_POSTGRES_PORT${jobNumber}"
   local VARIABLE_DB_SOURCE="VOLUMERIZE_POSTGRES_SOURCE${jobNumber}"
   local VARIABLE_DB_DATABASE="VOLUMERIZE_POSTGRES_DATABASE${jobNumber}"
-  
+  local VARIABLE_BACKUP_SOURCE="VOLUMERIZE_SOURCE${JOB_ID}"
+
   file_env ${VARIABLE_DB_PASSWORD}
   if [ -n "${!VARIABLE_DB_SOURCE}" ]; then
-    VARIABLE_DB_SOURCE=${!VARIABLE_DB_SOURCE}
+    VARIABLE_DB_SOURCE=${VARIABLE_DB_SOURCE}
   else
     VARIABLE_DB_SOURCE="VOLUMERIZE_SOURCE"
   fi
   if [ -z "${!VARIABLE_DB_PORT}" ]; then
     local ${VARIABLE_DB_PORT}=5432
   fi
-  if [ -n "${JOB_ID}" ] && [ "VOLUMERIZE_SOURCE${JOB_ID}" != "${VARIABLE_DB_SOURCE}" ]; then
+  if [ -n "${JOB_ID}" ] && [ "${!VARIABLE_BACKUP_SOURCE}" != "${!VARIABLE_DB_SOURCE}" ]; then
     echo "INFO: Database ${jobNumber} skipped because the running job does not correspond to its source destination"
     return 1
   fi
