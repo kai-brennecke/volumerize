@@ -35,10 +35,10 @@ services:
     environment:
       - VOLUMERIZE_SOURCE=/source
       - VOLUMERIZE_TARGET=file:///backup
-      - MONGO_USERNAME=root
-      - MONGO_PASSWORD=1234
-      - MONGO_PORT=27017
-      - MONGO_HOST=mongodb
+      - VOLUMERIZE_MONGO_USERNAME=root
+      - VOLUMERIZE_MONGO_PASSWORD=1234
+      - VOLUMERIZE_MONGO_PORT=27017
+      - VOLUMERIZE_MONGO_HOST=mongodb
     volumes:
       - volumerize-cache:/volumerize-cache
       - backup:/backup
