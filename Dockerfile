@@ -6,6 +6,8 @@ ENV PIPX_HOME=/opt/pipx
 ENV PIPX_BIN_DIR=/usr/local/bin
 ENV PATH="/usr/local/bin:${PATH}"
 
+ARG DOCKER_VERSION=28.5.2
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         pipx \
@@ -31,7 +33,15 @@ RUN apt-get update \
         rsync \
         rdiff \
         tzdata \
-    && rm -rf /var/lib/apt/lists/* \
+    # Install Docker CLI
+    && curl -fsSL "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" -o /tmp/docker.tgz \
+    && export DOCKER_SHA=6ce6d9dd99413e77c992d5b9e0a898dd1ed63ef9 \
+    && echo 'Calculated checksum: '$(sha1sum /tmp/docker.tgz) \
+    && echo "$DOCKER_SHA  /tmp/docker.tgz" | sha1sum -c - \
+	&&  tar -xzvf /tmp/docker.tgz -C /tmp \
+	&&  cp /tmp/docker/docker /usr/local/bin/ \
+    # Cleanup
+    && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* \
     && pipx install duplicity \
     && mkdir -p /etc/volumerize /volumerize-cache /opt/volumerize
 
@@ -57,6 +67,7 @@ WORKDIR /etc/volumerize
 VOLUME ["/volumerize-cache"]
 COPY imagescripts/ /opt/volumerize/
 COPY scripts/ /etc/volumerize/
+COPY preexecute/ /preexecute
 COPY postexecute/ /postexecute
 ENTRYPOINT ["bash", "/opt/volumerize/docker-entrypoint.sh"]
 CMD ["volumerize"]
