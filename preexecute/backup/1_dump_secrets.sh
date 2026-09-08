@@ -6,7 +6,11 @@
 # This volume is shared with the main backup service.
 # Write all encrypted secrets to SHARED_SECRETS_VOLUME.
 
-source /utils/check-env.sh
+if [[ ! -v SHARED_SECRETS_VOLUME ]]; then
+    exit 0
+fi
+
+source /opt/volumerize/env.sh
 check_env "dump_secrets_1" "SHARED_SECRETS_VOLUME"
 check_env "dump_secrets_2" "PASSPHRASE"
 

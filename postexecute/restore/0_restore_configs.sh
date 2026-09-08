@@ -1,6 +1,10 @@
 #!/bin/bash
 
-source /utils/check-env.sh
+if [[ ! -v CONFIGS_SOURCE ]]; then
+    exit 0
+fi
+
+source /opt/volumerize/env.sh
 check_env "dump_configs" "CONFIGS_SOURCE"
 
 for f in ${CONFIGS_SOURCE}/*

@@ -1,6 +1,10 @@
 #!/bin/bash
 
-source /utils/check-env.sh
+if [[ ! -v SECRETS_SOURCE ]]; then
+    exit 0
+fi
+
+source /opt/volumerize/env.sh
 check_env "restore_secrets_1" "SECRETS_SOURCE"
 check_env "restore_secrets_2" "PASSPHRASE"
 
